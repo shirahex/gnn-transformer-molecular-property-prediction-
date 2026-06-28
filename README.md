@@ -207,18 +207,6 @@ molecular-ai-project/
 └── README.md                    # This file
 ```
 
----
-
-## Competition Winning Elements
-
-- **Novelty**: "First comparison of GNN vs. Molecular Transformer with unified XAI framework"
-- **Impact**: "Accelerates early drug discovery by predicting molecular properties in milliseconds"
-- **Interpretability**: "Model explains WHY it made a prediction, not just WHAT"
-- **Uncertainty**: "Provides confidence intervals -- critical for high-stakes drug decisions"
-- **Multi-task**: "Single model learns across diverse chemical properties"
-
----
-
 ## License
 
 MIT License - Created for academic research and competition purposes.
