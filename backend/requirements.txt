@@ -1,0 +1,38 @@
+# Core ML
+torch>=2.0.0
+torch-geometric>=2.3.0
+torch-scatter>=2.1.0
+torch-sparse>=0.6.0
+
+# Transformers
+transformers>=4.30.0
+datasets>=2.12.0
+accelerate>=0.20.0
+peft>=0.4.0
+
+# Molecular
+deepchem>=2.7.0
+rdkit>=2023.3.0
+
+# API
+fastapi>=0.100.0
+uvicorn>=0.23.0
+python-multipart>=0.0.6
+
+# Data / Utils
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.2.0
+scipy>=1.10.0
+
+# Viz
+matplotlib>=3.7.0
+seaborn>=0.12.0
+pillow>=9.5.0
+
+# Logging / Tracking
+wandb>=0.15.0
+tqdm>=4.65.0
+
+# Dev
+typing-extensions>=4.7.0

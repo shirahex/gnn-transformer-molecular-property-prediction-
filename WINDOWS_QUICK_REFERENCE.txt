@@ -1,0 +1,68 @@
+# Windows Quick Reference Card
+# Save this as REFERENCE.txt in your project folder
+
+========== PATHS ==========
+Project:     C:\Users\YOUR_NAME\molecular-ai-project
+Backend:     C:\Users\YOUR_NAME\molecular-ai-project\backend
+Frontend:    C:\Users\YOUR_NAME\molecular-ai-project\frontend
+
+========== ONE-TIME SETUP ==========
+# 1. Allow PowerShell scripts (run ONCE as Administrator)
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# 2. Check prerequisites
+python --version      # Need 3.9+
+node --version        # Need v18+
+nvidia-smi            # Check GPU (optional)
+
+========== AUTO RUN (Option A) ==========
+cd "C:\Users\YOUR_NAME\molecular-ai-project"
+.\run.ps1
+
+========== MANUAL RUN (Option B) ==========
+
+# --- BACKEND ---
+cd "C:\Users\YOUR_NAME\molecular-ai-project\backend"
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+# If PyTorch Geometric fails, run ONE of these:
+# (GPU):
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install torch-geometric torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
+# (CPU):
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install torch-geometric torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-2.0.0+cpu.html
+
+# Start backend (leave this terminal open)
+.\venv\Scripts\Activate.ps1
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+# --- FRONTEND (NEW TERMINAL) ---
+cd "C:\Users\YOUR_NAME\molecular-ai-project\frontend"
+npm install
+npm start
+
+========== VERIFY ==========
+Backend:  http://localhost:8000/health
+API Docs: http://localhost:8000/docs
+Frontend: http://localhost:3000
+
+========== FIXES ==========
+# Script blocked?
+powershell -ExecutionPolicy Bypass -File .\run.ps1
+
+# npm broken?
+Remove-Item -Recurse -Force node_modules
+Remove-Item package-lock.json
+npm install
+
+# CUDA OOM? Edit backend/app/config.py:
+DEVICE = "cpu"
+BATCH_SIZE = 8
+
+# Port 8000 in use? Change port:
+# backend/app/config.py -> port 8001
+# frontend/src/services/api.ts -> http://localhost:8001
